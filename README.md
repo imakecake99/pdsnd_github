@@ -13,5 +13,6 @@ Python Files:
 * bikeshare.py
 * bikeshare_template.py
 
-### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+Code Snippets:  
+* df.groupby(['Start Station','End Station']).size().idxmax()
+  Sourced from stack overflow: https://stackoverflow.com/questions/53037698/how-can-i-find-the-most-frequent-two-column-combination-in-a-dataframe-in-python
