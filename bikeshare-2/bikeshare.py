@@ -17,7 +17,7 @@ def get_filters():
     """
     print('-'*40)
     print('\nHello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington).
     while True:
         city = input("\nChoose your city by typing one of the following - chicago, new york city, washington: ")
         if city in ('chicago', 'new york city', 'washington'):
@@ -59,7 +59,7 @@ def load_data(city, month, day):
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
 
-    # convert the Start Time column to datetime
+    # convert Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # extract month and day of week from Start Time to create new columns
@@ -68,7 +68,6 @@ def load_data(city, month, day):
 
     # filter by month if applicable
     if month != 'all':
-        # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
 
@@ -77,7 +76,6 @@ def load_data(city, month, day):
 
     # filter by day of week if applicable
     if day != 'all':
-        # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
 
     return df
@@ -88,16 +86,12 @@ def time_stats(df):
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-
-    # display the most common month
+    # display most common month
     popular_month = df['month'].mode()[0]
-
-    # display the most common day of week
+    # display most common day of week
     popular_day = df['day_of_week'].mode()[0]
-
-    # display the most common start hour
+    # display most common start hour
     popular_hour = df['Start Time'].dt.hour.mode()[0]
-
     print('Most Popular Month:', popular_month)
     print('Most Popular Day:', popular_day)
     print('Most Popular Start Hour:', popular_hour)
@@ -110,18 +104,12 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
-
     # display most commonly used start station
     popular_station_start = df['Start Station'].mode()[0]
-
     # display most commonly used end station
     popular_station_end = df['End Station'].mode()[0]
-
     # display most frequent combination of start station and end station trip
-
     popular_station_combo = df.groupby(['Start Station','End Station']).size().idxmax()
-
-
     print('Most Popular Start Station:', popular_station_start)
     print('Most Popular End Station:', popular_station_end)
     print('Most Popular Combo of Start & End Stations:', popular_station_combo)
@@ -134,13 +122,10 @@ def trip_duration_stats(df):
 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
-
     # display total travel time
     total_travel_time = sum(df['Trip Duration'])
-
     # display mean travel time
     average_travel_time = sum(df['Trip Duration'])/df['Trip Duration'].count()
-
     print('Total Travel Time:', total_travel_time)
     print('Average Travel Time:', average_travel_time)
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -152,10 +137,8 @@ def user_stats(df):
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-
     # Display counts of user types
     user_types = df['User Type'].value_counts()
-
     # Display counts of gender
     while True:
         try:
@@ -164,7 +147,6 @@ def user_stats(df):
         except KeyError:
             gender_types = 'data not available'
             break
-
     # Display earliest, most recent, and most common year of birth
     while True:
         try:
@@ -177,7 +159,6 @@ def user_stats(df):
             most_recent_birth_year = 'data not available'
             popular_birth_year = 'data not available'
             break
-
     print('User Types:\n', user_types)
     print('\nGender Types:\n', gender_types)
     print('\nEarliest Year of Birth:', earliest_birth_year)
@@ -191,12 +172,10 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
