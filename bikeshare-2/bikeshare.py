@@ -187,6 +187,25 @@ def user_stats(df):
     print('-'*40)
 
 
+def raw_data(df):
+    """
+    Asks user if they want to see 5 lines of raw data.
+    Returns the 5 lines of raw data if user inputs `yes`. Iterate until user response with a `no`
+
+    """
+
+    data = 0
+
+    while True:
+        answer = input('Would you like to see 5 lines of raw data? Enter yes or no: ')
+        if answer.lower() == 'yes':
+            print(df[data : data+5])
+            data += 5
+
+        else:
+            break
+            
+
 def main():
     while True:
         city, month, day = get_filters()
