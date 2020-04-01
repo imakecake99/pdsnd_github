@@ -19,7 +19,7 @@ def get_filters():
     print('\nHello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
-        city = input("\nChoose your city by typing one of the following - chicago, new york city, washington: ")
+        city = input("\nChoose your city by typing one of the following - chicago, new york city, washington: ").lower()
         if city in ('chicago', 'new york city', 'washington'):
                 break
         elif city not in ('chicago', 'new york city', 'washington'):
@@ -27,7 +27,7 @@ def get_filters():
 
     # get user input for month (all, january, february, ... , june)
     while True:
-        month  = input("\nChoose a month by typing one of the following - january, february, march, april, may, june, or type \'all\' to see unfiltered data: ")
+        month  = input("\nChoose a month by typing one of the following - january, february, march, april, may, june, or type \'all\' to see unfiltered data: ").lower()
         if month in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
             break
         elif month not in ('january', 'february', 'march', 'april', 'may', 'june', 'all'):
@@ -35,7 +35,7 @@ def get_filters():
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
-        day = input("\nChoose a day of the week by typing the name in full, or type \'all\' to see unfiltered data: ")
+        day = input("\nChoose a day of the week by typing the name in full, or type \'all\' to see unfiltered data: ").lower()
         if day in ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all'):
             break
         elif day not in ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all'):
@@ -204,7 +204,7 @@ def raw_data(df):
 
         else:
             break
-            
+
 
 def main():
     while True:
